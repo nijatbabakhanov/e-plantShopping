@@ -10,7 +10,6 @@ function ProductList() {
   const [addedToCart, setAddedToCart] = useState({});
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  console.log(totalQuantity);
 
   const dispatch = useDispatch();
 
@@ -348,7 +347,7 @@ function ProductList() {
                     id="mainIconPathAttribute"
                   ></path>
                 </svg>
-                <span>{totalQuantity}</span>
+                <span>{totalQuantity != 0 ? totalQuantity : ""}</span>
               </h1>
             </a>
           </div>
