@@ -13,6 +13,12 @@ function ProductList() {
 
   const dispatch = useDispatch();
 
+  const cart = useSelector((state) => state.cart.items);
+
+  const checkItemInCart = (itemName) => {
+    return cart.find((item) => item.name === itemName) !== undefined;
+  };
+
   const plantsArray = [
     {
       category: "Air Purifying Plants",
@@ -372,8 +378,13 @@ function ProductList() {
                     <div>{plant.description}</div>
                     <div className="product-price">{plant.cost}</div>
                     <button
-                      className="product-button"
+                      className={`product-button  ${
+                        checkItemInCart(plant.name)
+                          ? "added-to-cart product-button"
+                          : ""
+                      }`}
                       onClick={() => handleAddToCart(plant)}
+                      disabled={checkItemInCart(plant.name)}
                     >
                       Add to Cart
                     </button>
